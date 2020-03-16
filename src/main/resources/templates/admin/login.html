@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en-US" dir="ltr" xmlns:th="http://www.thymeleaf.org">
+
+
+<head th:replace="fragments/head :: head"></head>
+
+  <body class="bg-white">
+
+    <!-- ===============================================-->
+    <!--    Main Content-->
+    <!-- ===============================================-->
+    <main class="main" id="top">
+
+
+      <div class="container-fluid">
+        <div class="row min-vh-100 bg-100">
+          <div class="col-6 d-none d-lg-block">
+            <div class="bg-holder" style="background-image:url(../../assets/img/generic/14.jpg);background-position: 50% 20%;">
+            </div>
+            <!--/.bg-holder-->
+
+          </div>
+          <div class="col-sm-10 col-md-6 px-sm-0 align-self-center mx-auto py-5">
+            <div class="row justify-content-center no-gutters">
+              <div class="col-lg-9 col-xl-8 col-xxl-6">
+                <div class="card">
+                  <div style="background-color: #0a1f2e" class="card-header text-center p-2"><a class="text-white text-sans-serif font-weight-extra-bold fs-4 z-index-1 position-relative" href="../../index.html">Rustic Rides Garage</a></div>
+                  <div class="card-body p-4">
+                    <div class="d-flex align-items-center text-align-center">
+                      <h3>Welcome Back Chandler</h3>
+                    </div>
+                    <hr>
+                    <div class="d-flex align-items-center justify-content-between">
+                      <h3>Login</h3>
+                    </div>
+                    <form th:action="@{/login}" method="post">
+                      <div class="form-group">
+                        <label for="split-email">Username</label>
+                        <input class="form-control" id="split-email" type="text" name="username" />
+                      </div>
+                      <div class="form-group">
+                        <div class="d-flex justify-content-between">
+                          <label for="split-password">Password</label><a class="fs--1" href="../../authentication/split/forgot-password.html">Forgot Password?</a>
+                        </div>
+                        <input class="form-control" id="split-password" type="password" name="password" />
+                      </div>
+                      <div class="form-group">
+                        <button class="btn btn-primary btn-block mt-3" type="submit" name="submit">Log in</button>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <!-- ===============================================-->
+    <!--    End of Main Content-->
+    <!-- ===============================================-->
+
+
+    <!-- ===============================================-->
+    <!--    JavaScripts-->
+    <!-- ===============================================-->
+    <div th:replace="fragments/head :: javascripts"></div>
+
+  </body>
+
+</html>
