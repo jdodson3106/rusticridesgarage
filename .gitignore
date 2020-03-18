@@ -7,6 +7,7 @@ target/
 ### Static assest and libraries not needed in git ###
 /src/main/resources/static/assets
 /src/main/resources/static/lib
+/src/main/java/com/justindodson/rusticridesgarage/bootstrap
 
 ### STS ###
 .apt_generated
