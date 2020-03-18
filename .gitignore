@@ -4,6 +4,10 @@ target/
 !**/src/main/**
 !**/src/test/**
 
+### Static assest and libraries not needed in git ###
+/src/main/resources/static/assets
+/src/main/resources/static/lib
+
 ### STS ###
 .apt_generated
 .classpath

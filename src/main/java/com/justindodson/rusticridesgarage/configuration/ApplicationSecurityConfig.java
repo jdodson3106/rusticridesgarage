@@ -46,7 +46,7 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/", "/h2-console", "/register", "/css/**", "/js/**", "/assets/**", "/lib/**").permitAll()
                 .anyRequest().authenticated()
-                .and().formLogin().defaultSuccessUrl("/dashboard", true)
+                .and().formLogin().defaultSuccessUrl("/admin/dashboard", true)
                 .loginPage("/login").permitAll()
                 .and().logout().invalidateHttpSession(true).clearAuthentication(true)
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
