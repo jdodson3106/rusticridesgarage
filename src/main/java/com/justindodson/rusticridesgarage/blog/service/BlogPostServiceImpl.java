@@ -74,4 +74,9 @@ public class BlogPostServiceImpl implements BlogPostService {
     public Post getPostByTitle(String title) {
         return postRepository.findPostByTitle(title);
     }
+
+    @Override
+    public void deletePost(Post post) {
+        postRepository.delete(post);
+    }
 }

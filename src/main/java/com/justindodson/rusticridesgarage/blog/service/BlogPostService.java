@@ -7,6 +7,7 @@ import java.util.List;
 public interface BlogPostService {
     void createOrUpdatePost(Post post);
     void savePostDraft(Post post);
+    void deletePost(Post post);
     List<Post> getAllPosts();
     List<Post> getAllDraftPosts();
     List<Post> getAllPublishedPosts();

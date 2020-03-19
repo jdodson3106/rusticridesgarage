@@ -5,11 +5,24 @@
 <body>
 <div th:replace="fragments/head :: navbar"></div>
 
+    <div class="container" th:if="${message != null}" style="margin-top: 25px">
+        <div class="alert alert-success alert-dismissible fade show" role="alert" th:if="${messageType.equals('success')}">
+            <span><strong th:text="${message}"></strong></span>
+            <button class="close" type="button" data-dismiss="alert" aria-label="Close"><span class="font-weight-light" aria-hidden="true">×</span></button>
+        </div>
+
+        <div class="alert alert-danger alert-dismissible fade show" role="alert" th:if="${messageType.equals('error')}">
+            <span><strong th:text="${message}"></strong></span>
+            <button class="close" type="button" data-dismiss="alert" aria-label="Close"><span class="font-weight-light" aria-hidden="true">×</span></button>
+        </div>
+
+    </div>
     <div class="container">
         <div class="row" th:each="post : ${posts}" style="margin-bottom: 50px">
             <div class="container">
                 <h1 align="center" th:text="${post.title}"></h1> <br> <br>
                 <p th:remove="tag" th:utext="${post.body}"></p>
+                <a th:href="@{/admin/delete/article(id=${post.id})}" class="btn btn-falcon-danger btn-xl">Delete</a>
             </div>
         </div>
     </div>
