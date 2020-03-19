@@ -2,6 +2,8 @@ package com.justindodson.rusticridesgarage.blog.controller;
 
 import com.justindodson.rusticridesgarage.blog.model.entity.Post;
 import com.justindodson.rusticridesgarage.blog.service.BlogPostService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,6 +16,7 @@ import java.util.Map;
 
 @Controller
 public class PostController {
+    private static final Logger LOGGER = LoggerFactory.getLogger(PostController.class);
 
     private final BlogPostService blogPostService;
 
@@ -36,8 +39,8 @@ public class PostController {
     public String createNewPostProcessor(Model model, @ModelAttribute("post") Post post) {
         blogPostService.createOrUpdatePost(post);
 
-        // redirect to blog post dashboard
-        return "redirect:/dashboard";
+        // redirect to all posts
+        return "redirect:/admin/all-posts";
     }
 
     @GetMapping("/admin/all-posts")
@@ -69,4 +72,26 @@ public class PostController {
         }
         return "redirect:/admin/all-posts";
     }
+
+    @GetMapping("/admin/edit/article")
+    public String editArticle(@RequestParam(value="id", required = true) long id, Model model, RedirectAttributes attributes) {
+        Post post = blogPostService.getPostById(id);
+        LOGGER.info("Found article " + post.getTitle());
+        if(post != null) {
+            model.addAttribute("post", post);
+            return "admin/edit_post";
+        }
+        attributes.addFlashAttribute("error", "Could not find article with an ID of " + id);
+        return "redirect:/admin/all-posts";
+    }
+
+    @PostMapping("/admin/edit/article/{id}")
+    public String editArticleProcessor(@PathVariable("id") long id, Model model) {
+        LOGGER.info("Updating post with id: " + id);
+        Post post = blogPostService.getPostById(id);
+        blogPostService.createOrUpdatePost(post);
+        return "redirect:/admin/all-posts";
+    }
+
+
 }
