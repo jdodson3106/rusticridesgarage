@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.ListIterator;
 import java.util.Optional;
 
 @Service
@@ -24,14 +23,13 @@ public class BlogPostServiceImpl implements BlogPostService {
 
     @Override
     public void createOrUpdatePost(Post post) {
-        post.setPublished(true);
-
         Optional<Post> postOptional = postRepository.findById(post.getId());
         if(postOptional.isPresent()) {
             LOGGER.info("Updating post in BlogPostService class...");
             Post updated = postOptional.get();
             updated.setTitle(post.getTitle());
             updated.setBody(post.getBody());
+            updated.setPublished(post.isPublished());
             postRepository.save(updated);
         } else {
             postRepository.save(post);

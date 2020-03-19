@@ -8,7 +8,7 @@
 <div class="container">
     <form th:action="@{/admin/edit/article/}" th:object="${article}" method="post">
         <div class="form-group">
-            <input type="hidden" th:text="${article.id}" th:field="*{id}">
+            <input type="hidden" th:value="${article.id}" th:field="*{id}">
             <label for="post-title">Post Title</label>
             <input class="form-control" id="post-title" name="title" type="text" th:value="${article.title}" th:field="*{title}">
         </div>
@@ -20,8 +20,13 @@
             </div>
         </div>
 
+        <div class="form-group">
+            <label for="post-publish">Publish Post</label>
+            <input id="post-publish" type="checkbox" th:checked="true" th:field="*{published}" name="published" data-toggle="tooltip" data-placement="top" title="Check if article is ready to published publicly. If still working, leave unchecked and the it will be saved as a draft.">
+        </div>
+
         <input class="btn btn-falcon-primary btn-lg" type="submit" value="Update">
-        <input class="btn btn-falcon-danger btn-lg" type="submit" value="Save As Draft" th:formaction="@{/admin/save-draft}">
+        <a class="btn btn-falcon-danger btn-lg" th:href="@{/admin/all-posts}">Cancel</a>
 
     </form>
 </div>

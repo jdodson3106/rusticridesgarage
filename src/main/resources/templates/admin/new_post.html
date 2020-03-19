@@ -19,8 +19,13 @@
             </div>
         </div>
 
-        <input class="btn btn-falcon-primary btn-lg" type="submit" value="Publish">
-        <input class="btn btn-falcon-danger btn-lg" type="submit" value="Save As Draft" th:formaction="@{/admin/save-draft}">
+        <div class="form-group">
+            <label for="post-publish">Publish Post</label>
+            <input id="post-publish" type="checkbox" th:checked="true" th:field="*{published}" name="published" data-toggle="tooltip" data-placement="top" title="Check if article is ready to published publicly. If still working, leave unchecked and the it will be saved as a draft.">
+        </div>
+
+        <input class="btn btn-falcon-primary btn-lg" type="submit" value="Create">
+        <a class="btn btn-falcon-danger btn-lg" th:href="@{/admin/all-posts}">Discard</a>
 
     </form>
 </div>

@@ -22,6 +22,9 @@
             <div class="container">
                 <h1 align="center" th:text="${post.title}"></h1> <br> <br>
                 <p th:remove="tag" th:utext="${post.body}"></p>
+                <small th:if="${post.isPublished()}" th:text="Published"></small>
+                <small th:if="!${post.isPublished()}" th:text="Draft"></small>
+                <br>
                 <a th:href="@{/admin/delete/article(id=${post.id})}" class="btn btn-falcon-danger btn-xl">Delete</a>
                 <a th:href="@{/admin/edit/article(id=${post.id})}" class="btn btn-falcon-warning btn-xl">Edit</a>
             </div>
