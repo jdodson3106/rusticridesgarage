@@ -1,6 +1,5 @@
-package com.justindodson.rusticridesgarage.admin.controllers;
+package com.justindodson.rusticridesgarage.auth.controllers;
 
-import jdk.nashorn.internal.runtime.logging.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
