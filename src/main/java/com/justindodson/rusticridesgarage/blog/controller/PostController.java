@@ -77,19 +77,14 @@ public class PostController {
     public String editArticle(@RequestParam(value="id", required = true) long id, Model model, RedirectAttributes attributes) {
         Post post = blogPostService.getPostById(id);
         LOGGER.info("Found article " + post.getTitle());
-        if(post != null) {
-            model.addAttribute("post", post);
-            return "admin/edit_post";
-        }
-        attributes.addFlashAttribute("error", "Could not find article with an ID of " + id);
-        return "redirect:/admin/all-posts";
+        model.addAttribute("article", post);
+        return "admin/edit_post";
     }
 
-    @PostMapping("/admin/edit/article/{id}")
-    public String editArticleProcessor(@PathVariable("id") long id, Model model) {
-        LOGGER.info("Updating post with id: " + id);
-        Post post = blogPostService.getPostById(id);
-        blogPostService.createOrUpdatePost(post);
+    @PostMapping("/admin/edit/article/")
+    public String editArticleProcessor(@ModelAttribute("article") Post article, Model model) {
+        LOGGER.info("Updating post with id: " + article.getId());
+        blogPostService.createOrUpdatePost(article);
         return "redirect:/admin/all-posts";
     }
 

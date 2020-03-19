@@ -24,17 +24,14 @@ public class BlogPostServiceImpl implements BlogPostService {
 
     @Override
     public void createOrUpdatePost(Post post) {
-        // TODO: 3/18/20 : Create separate save and update methods for articles
         post.setPublished(true);
 
-        Optional<Post> found = postRepository.findById(post.getId());
-
-        if(found.isPresent()) {
-            LOGGER.info("Found article with id:" + post.getId());
-            Post updated = found.get();
-            updated.setBody(post.getBody());
-            updated.setDate(post.getDate());
+        Optional<Post> postOptional = postRepository.findById(post.getId());
+        if(postOptional.isPresent()) {
+            LOGGER.info("Updating post in BlogPostService class...");
+            Post updated = postOptional.get();
             updated.setTitle(post.getTitle());
+            updated.setBody(post.getBody());
             postRepository.save(updated);
         } else {
             postRepository.save(post);

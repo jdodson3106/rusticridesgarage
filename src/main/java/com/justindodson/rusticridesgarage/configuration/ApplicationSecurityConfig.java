@@ -44,7 +44,7 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
         http.headers().frameOptions().disable().and()
                 .csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/", "/h2-console", "/register", "/css/**", "/js/**", "/assets/**", "/lib/**").permitAll()
+                .antMatchers("/", "/admin/**", "/h2-console", "/register", "/css/**", "/js/**", "/assets/**", "/lib/**").permitAll()
                 .anyRequest().authenticated()
                 .and().formLogin().defaultSuccessUrl("/admin/all-posts", true)// TODO: 3/18/20 change success login url to dashboard once created 
                 .loginPage("/login").permitAll()
